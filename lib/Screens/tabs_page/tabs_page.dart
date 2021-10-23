@@ -59,11 +59,10 @@ void initState(){
             });
             switch(_currentndex){
              case 0:
-            context.read<SingleUserBloc>().add(FetchUser(userId));
-             break;
-              case 1:
-              context.read<PostsBloc>().add(PostsFetched(userId));
-              break;
+             context.read<SingleUserBloc>().add(FetchUser(userId)); break;
+             
+             case 1:
+             context.read<PostsBloc>().add(PostsFetched(userId)); break;
           }},
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.person), label: "User"),
