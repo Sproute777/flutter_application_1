@@ -1,20 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Screens/Home/home_page.dart';
-import 'package:get/get.dart';
-import 'package:flutter_application_1/Screens/User/user_page.dart';
+import 'package:flutter_application_1/screens/single_user_page/view/single_user_page.dart';
 
-class DeatilsPage extends StatefulWidget {
+
+class TabsPage extends StatefulWidget {
+  TabsPage({Key? key,required this.index}): super(key: key);
+int index;
   @override
-  _DeatilsPageState createState() => _DeatilsPageState();
+  _TabsPageState createState() => _TabsPageState();
 }
 
-class _DeatilsPageState extends State<DeatilsPage> {
-  int currentndex = 0;
+class _TabsPageState extends State<TabsPage> {
+
+@override
+void initState(){
+  currentndex = widget.index;
+  super.initState();
+}
+
+
+ late int currentndex;
 
   @override
   Widget build(BuildContext context) {
     final screens = [
-      UserPage(),
+      SingleUserPage(),
+      SingleUserPage(),
     ];
     return Scaffold(
       appBar: AppBar(
@@ -24,7 +34,7 @@ class _DeatilsPageState extends State<DeatilsPage> {
           IconButton(
               icon: Icon(Icons.logout),
               tooltip: "Logout",
-              onPressed: () => Get.offAll(() => HomePage()))
+              onPressed: () => Navigator.of(context).pop())
         ],
       ),
       body: screens[currentndex],
@@ -39,6 +49,7 @@ class _DeatilsPageState extends State<DeatilsPage> {
             });
           },
           items: [
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: "User"),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: "User"),
           ]),
     );
