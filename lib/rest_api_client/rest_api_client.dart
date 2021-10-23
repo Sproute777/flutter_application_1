@@ -13,5 +13,8 @@ abstract class RestClient {
 
   @GET("/users/{id}")
   Future<User> getUser(@Path("id") String id);
+
+  @GET("/users/{id}/posts")
+  Future<List<Post>> getUserPosts(@Path("id") String id);
   
 }

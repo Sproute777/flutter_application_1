@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/posts_page/bloc/posts_bloc.dart';
 import 'package:flutter_application_1/screens/single_user_page/bloc/singleuser_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_application_1/screens/users_page/bloc/user_bloc.dart';
@@ -52,9 +53,13 @@ class TileUser extends StatelessWidget {
             leading: Icon(Icons.person),
             title:   Text(name, style: TextStyle(color: Colors.black),),
             subtitle: Text(username),
-            onTap: () {
-              context.read<SingleUserBloc>().add(FetchUser(index));
+            onTap: ()  {
+             context.read<SingleUserBloc>().add(FetchUser(index));
+             
+             context.read<PostsBloc>().add(PostsFetched(index));
+             
               Navigator.of(context).pushNamed('/tabs/user');
+        
             },
           ));
     }

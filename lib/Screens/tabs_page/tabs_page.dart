@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/posts_page/bloc/posts_bloc.dart';
+import 'package:flutter_application_1/screens/posts_page/view/posts_page.dart';
+import 'package:flutter_application_1/screens/single_user_page/bloc/singleuser_bloc.dart';
 import 'package:flutter_application_1/screens/single_user_page/view/single_user_page.dart';
-
+import 'package:flutter_application_1/screens/users_page/bloc/user_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TabsPage extends StatefulWidget {
   TabsPage({Key? key,required this.index}): super(key: key);
+ 
 int index;
   @override
   _TabsPageState createState() => _TabsPageState();
@@ -13,7 +18,9 @@ class _TabsPageState extends State<TabsPage> {
 
 @override
 void initState(){
+
   currentndex = widget.index;
+
   super.initState();
 }
 
@@ -22,9 +29,11 @@ void initState(){
 
   @override
   Widget build(BuildContext context) {
+         final userId = context.watch<SingleUserBloc>().state.user.id;
+ 
     final screens = [
       SingleUserPage(),
-      SingleUserPage(),
+      PostsPage(),
     ];
     return Scaffold(
       appBar: AppBar(
@@ -46,11 +55,19 @@ void initState(){
           onTap: (_currentndex) {
             setState(() {
               currentndex = _currentndex;
+             
             });
-          },
+            switch(_currentndex){
+             case 0:
+            context.read<SingleUserBloc>().add(FetchUser(userId));
+             break;
+              case 1:
+              context.read<PostsBloc>().add(PostsFetched(userId));
+              break;
+          }},
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.person), label: "User"),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: "User"),
+            BottomNavigationBarItem(icon: Icon(Icons.message), label: "Posts"),
           ]),
     );
   }
