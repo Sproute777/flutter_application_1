@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/comments/bloc/comments_bloc.dart';
 import 'package:flutter_application_1/screens/posts_page/bloc/posts_bloc.dart';
 import 'package:flutter_application_1/screens/single_user_page/bloc/singleuser_bloc.dart';
 import 'package:flutter_application_1/screens/tabs_page/tabs_page.dart';
@@ -23,7 +24,10 @@ class RestRetrofitApp extends StatelessWidget {
         BlocProvider(
           create: (context) => SingleUserBloc()),
         BlocProvider(
-          create: (context) => PostsBloc(),
+          create: (context) => PostsBloc()),
+        BlocProvider(
+          create: (context) => CommentsBloc(),
+        
         ),
       ],
       child:  App()
@@ -42,7 +46,8 @@ class App extends StatelessWidget {
       routes: {
         '/': (context) => UsersPage(),
         '/tabs/user': (context) => TabsPage(index: 0),
-        '/tabs/posts': (context) => TabsPage(index: 1)
+        '/tabs/posts': (context) => TabsPage(index: 1),
+        // '/comments': (context) => ;
       }
       );
       }

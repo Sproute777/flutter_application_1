@@ -16,5 +16,8 @@ abstract class RestClient {
 
   @GET("/users/{id}/posts")
   Future<List<Post>> getUserPosts(@Path("id") String id);
+
+  @GET("/comments")
+  Future<List<Comment>> getPostComment(@Query("PostId") String postId);
   
 }

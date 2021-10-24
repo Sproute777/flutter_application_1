@@ -56,7 +56,7 @@ class TileUser extends StatelessWidget {
             onTap: ()  {
              context.read<SingleUserBloc>().add(FetchUser(index));
              
-             context.read<PostsBloc>().add(PostsFetched(index));
+            //  context.read<PostsBloc>().add(PostsFetched(index));
              
               Navigator.of(context).pushNamed('/tabs/user');
         

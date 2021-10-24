@@ -18,9 +18,7 @@ class _TabsPageState extends State<TabsPage> {
 
 @override
 void initState(){
-
   currentndex = widget.index;
-
   super.initState();
 }
 
@@ -29,8 +27,10 @@ void initState(){
 
   @override
   Widget build(BuildContext context) {
-         final userId = context.watch<SingleUserBloc>().state.user.id;
- 
+    final userId = context.watch<SingleUserBloc>().state.user.id;
+    // first
+    // context.read<SingleUserBloc>().add(FetchUser(userId)); 
+    // context.read<PostsBloc>().add(PostsFetched(userId));
     final screens = [
       SingleUserPage(),
       PostsPage(),
@@ -58,10 +58,10 @@ void initState(){
              
             });
             switch(_currentndex){
-             case 0:
+             case 0://refresh
              context.read<SingleUserBloc>().add(FetchUser(userId)); break;
-             
-             case 1:
+
+             case 1://refresh
              context.read<PostsBloc>().add(PostsFetched(userId)); break;
           }},
           items: [
