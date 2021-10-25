@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_application_1/models/comment_model.dart';
-import 'package:flutter_application_1/rest_api_client/rest_api_client.dart';
+import '/models/comment_model.dart';
+import '/rest_api_client/rest_api_client.dart';
 
-class CommentRepository {
+class CommentsRepository {
 
 
     Future<List<Comment>?> fetchComments(int postId ) async {
