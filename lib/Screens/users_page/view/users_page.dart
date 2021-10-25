@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/screens/posts_page/bloc/posts_bloc.dart';
 import 'package:flutter_application_1/screens/single_user_page/bloc/singleuser_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_application_1/screens/users_page/bloc/user_bloc.dart';
+import 'package:routemaster/routemaster.dart';
 
 class UsersPage extends StatelessWidget {
   const UsersPage({Key? key}) : super(key: key);
@@ -58,8 +58,7 @@ class TileUser extends StatelessWidget {
              
             //  context.read<PostsBloc>().add(PostsFetched(index));
              
-              Navigator.of(context).pushNamed('/tabs/user');
-        
+             Routemaster.of(context).push('/tab-bar/user');
             },
           ));
     }

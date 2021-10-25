@@ -19,6 +19,7 @@ dependencies:
   equatable: ^2.0.3
   bloc: ^7.2.1
   retrofit: ^2.0.1
+  routemaster: ^0.10.0-dev4
 
   
 dev_dependencies:

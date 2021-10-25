@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_application_1/models/post_model.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:equatable/equatable.dart';
+
 
 part 'user_model.g.dart';
 
@@ -12,6 +13,10 @@ class User  extends Equatable{
     required this.username,
     required this.email,
     required this.phone,
+    this.posts = const <Post>[],
+    // this.albums = const <Album>[],
+    // this.todos = const <Todo>[],
+    // this.photos = const <Photo>[],
   });
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
@@ -22,10 +27,12 @@ class User  extends Equatable{
   final String username;
   final String email;
   final String phone;
+  @JsonKey(ignore: true)
+  final List<Post> posts;
 
 @override 
-List<Object> get props => [id,name,username,email,phone];
+List<Object> get props => [id,name,username,email,phone, posts];
 
-static const empty = User(id: -1 ,name: 'unknown', username: 'unknown',email: 'unknown',phone: 'unknown');
+static const empty = User(id: -1 ,name: 'unknown', username: 'unknown',email: 'unknown',phone: 'unknown', posts: const <Post>[]);
 
 }

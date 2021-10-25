@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/routes.dart';
 import 'package:flutter_application_1/screens/comments/bloc/comments_bloc.dart';
 import 'package:flutter_application_1/screens/posts_page/bloc/posts_bloc.dart';
 import 'package:flutter_application_1/screens/single_user_page/bloc/singleuser_bloc.dart';
-import 'package:flutter_application_1/screens/tabs_page/tabs_page.dart';
 import 'package:flutter_application_1/screens/users_page/bloc/user_bloc.dart';
-import 'package:flutter_application_1/screens/users_page/view/users_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:routemaster/routemaster.dart';
 
 void main() {
   runApp(RestRetrofitApp());
@@ -41,14 +41,13 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      initialRoute: '/',
-      routes: {
-        '/': (context) => UsersPage(),
-        '/tabs/user': (context) => TabsPage(index: 0),
-        '/tabs/posts': (context) => TabsPage(index: 1),
-        // '/comments': (context) => ;
-      }
+    return  MaterialApp.router(
+        routeInformationParser: const RoutemasterParser(),
+                      routerDelegate:
+                           RoutemasterDelegate(     
+                               routesBuilder: (_) =>
+                                         buildRouteMap()
+                                                        ),
       );
       }
   }

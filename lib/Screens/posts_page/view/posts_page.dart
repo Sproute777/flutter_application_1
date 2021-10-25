@@ -1,11 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/comments/bloc/comments_bloc.dart';
 import 'package:flutter_application_1/screens/posts_page/bloc/posts_bloc.dart';
+import 'package:flutter_application_1/screens/single_user_page/bloc/singleuser_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:routemaster/routemaster.dart';
 
-class PostsPage extends StatelessWidget {
-  const PostsPage({Key? key}) : super(key: key);
+class PostsPage extends StatefulWidget {
+  PostsPage({Key? key}) : super(key: key);
 
+  @override
+  _PostsPageState createState() => _PostsPageState();
+}
+
+class _PostsPageState extends State<PostsPage> {
+ 
+ @override
+ void initState(){
+   super.initState();
+   final user = context.read<SingleUserBloc>().state.user;
+   context.read<PostsBloc>().add(PostsFetched(user.id));
+ }
 
   @override
   Widget build(BuildContext context) {
@@ -30,49 +44,28 @@ class PostsPage extends StatelessWidget {
   } 
 }
 
-class TilePost extends StatefulWidget {
+class TilePost extends StatelessWidget {
   final int index;
  TilePost({Key? key,required this.index}) : super(key: key);
- 
-
-  @override
-  _TilePostState createState() => _TilePostState();
-}
-
-class _TilePostState extends State<TilePost> {
-  bool _customTileExpanded = false;
 
 
    Widget build(BuildContext context) {
-
-        final comments = context.select((CommentsBloc bloc) => bloc.state.comments);
-       List<Widget> listComment  = [];
-        comments.forEach((element) {
-          listComment.add( ListTile(title: Text(element.name),));
-         });
-       
-
     final posts = context.select((PostsBloc bloc)=> bloc.state.posts);
-    final title = posts[widget.index].title;
-    final body = posts[widget.index].body;
+    final postId = posts[index].id;
+    final title = posts[index].title;
+    final body = posts[index].body;
       return Card(
           elevation: 5,
-          child: ExpansionTile(
-             trailing: Icon(
-            _customTileExpanded
-                ? Icons.arrow_drop_down_circle
-                : Icons.arrow_drop_down,),
-             onExpansionChanged: (bool expanded) {
-            setState(() => _customTileExpanded = expanded);
-            context.read<CommentsBloc>().add(CommentsFetched(posts[widget.index].id));
-          },   
+          child: ListTile(
+             trailing: Icon(Icons.message),
+           
             leading: Icon(Icons.message),
             title:   Text(title, style: TextStyle(color: Colors.black),),
             subtitle: Text(body),
-            // onTap: () {
-          children: listComment,
-          
-            // },
+            onTap: () {
+              // context.read<CommentsBloc>().add(CommentsFetched(postId));
+              Routemaster.of(context).push('/comments/$postId');
+            },
           ));
     }
     }
