@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/routes.dart';
-import 'package:flutter_application_1/screens/comments/bloc/comments_bloc.dart';
-import 'package:flutter_application_1/screens/posts_page/bloc/posts_bloc.dart';
-import 'package:flutter_application_1/screens/single_user_page/bloc/singleuser_bloc.dart';
-import 'package:flutter_application_1/screens/users_page/bloc/user_bloc.dart';
+import 'package:flutter_application_1/pages/comments/bloc/comments_bloc.dart';
+import 'package:flutter_application_1/pages/posts_page/bloc/posts_bloc.dart';
+import 'package:flutter_application_1/pages/single_user_page/bloc/singleuser_bloc.dart';
+import 'package:flutter_application_1/pages/users_page/bloc/user_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:routemaster/routemaster.dart';
 
